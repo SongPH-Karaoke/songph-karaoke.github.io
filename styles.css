@@ -5,7 +5,7 @@
   background: #091323;
   font-synthesis: none;
   -webkit-text-size-adjust: 100%;
-  --muted: #a9bbd0;
+  --muted: #c0cfe0;
   --accent: #3ce5d3;
 }
 * { box-sizing: border-box; }
@@ -17,7 +17,7 @@ body {
   isolation: isolate;
   background: #091323;
 }
-/* Decorative photo stays behind the readable download content. */
+/* Keep the decorative photo behind text and controls. */
 body::before,
 body::after {
   content: "";
@@ -38,70 +38,72 @@ body::after {
 }
 .download-page {
   width: 100%;
-  max-width: 1120px;
+  max-width: 1220px;
   margin: auto;
-  padding: 64px 56px 48px;
+  padding: 32px 40px 24px;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(0, .75fr) minmax(0, 1.25fr);
   align-items: center;
-  gap: 68px;
+  gap: 56px;
 }
 .brand-art { text-align: center; }
 .brand-art img {
   display: block;
   width: 100%;
-  max-width: 430px;
+  max-width: 400px;
   height: auto;
   margin: auto;
 }
+.download-content { min-width: 0; }
 .eyebrow {
   color: var(--accent);
   font-size: .875rem;
   font-weight: 700;
   letter-spacing: .15em;
-  margin: 0 0 18px;
+  margin: 0 0 10px;
 }
 h1 {
-  font-size: 3.5rem;
+  font-size: 3rem;
   line-height: 1.12;
   letter-spacing: -.045em;
   margin: 0;
   font-weight: 750;
 }
+h1 br { display: none; }
 h1 span { color: #c2d0e1; }
 .intro {
   font-size: 1.125rem;
-  line-height: 1.6;
+  line-height: 1.5;
   color: var(--muted);
-  margin: 22px 0 25px;
-  max-width: 27rem;
+  margin: 12px 0 18px;
 }
 .release-details {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px 20px;
+  gap: 6px 18px;
   color: var(--muted);
-  font-size: .875rem;
-  line-height: 1.6;
-  margin-bottom: 25px;
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-bottom: 16px;
 }
-.release-details strong { color: #dce6f3; font-weight: 600; }
+.release-details strong { color: #e0e9f5; font-weight: 600; }
 .download-button {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 72px;
-  padding: 18px 25px;
+  min-height: 68px;
+  padding: 16px 22px;
   border: 2px solid var(--accent);
   border-radius: 14px;
   background: var(--accent);
   color: #06252b;
   font-size: 1.25rem;
-  line-height: 1.4;
+  line-height: 1.35;
   font-weight: 700;
   text-decoration: none;
   text-align: center;
   box-shadow: 0 8px 30px #00141d66;
+  scroll-margin-block: 20px;
 }
 .download-button:hover { background: #7cefe3; border-color: #7cefe3; }
 .download-button:focus {
@@ -110,89 +112,154 @@ h1 span { color: #c2d0e1; }
   box-shadow: 0 0 0 10px #091323;
 }
 .download-button:active { background: #24cbbb; }
-.included {
-  color: #b2c5d9;
-  font-size: .875rem;
-  line-height: 1.6;
-  text-align: center;
-  margin: 15px 0 29px;
+.remote-download {
+  border: 1px solid #3c566d;
+  background: #102236e6;
+  border-radius: 16px;
+  padding: 18px;
+  margin: 20px 0;
 }
-.install-note { border-top: 1px solid #26384c; padding-top: 22px; }
-.remote-download { border: 1px solid #314c61; background: #102236e6; border-radius: 16px; padding: 22px; margin: 24px 0 25px; }
-.remote-heading { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; justify-content: space-between; }
-.remote-heading h2 { font-size: 1.125rem; margin: 0; }
-.remote-heading > span { font-size: .625rem; letter-spacing: .1em; font-weight: 700; color: var(--accent); }
-.remote-download > p { color: var(--muted); line-height: 1.6; font-size: .9375rem; margin: 12px 0; }
-.remote-details { margin-bottom: 16px; font-size: .8125rem; gap: 6px 12px; }
-.download-button.secondary { background: #142e42; color: #e1faf6; border-color: #3c6d79; min-height: 60px; font-size: 1rem; }
-.download-button.secondary:hover { background: #21495b; border-color: var(--accent); }
-.install-note h2 { font-size: 1rem; margin: 0 0 7px; font-weight: 600; }
-.install-note p { font-size: 1rem; line-height: 1.6; color: var(--muted); margin: 0; }
-footer {
-  color: #91a6c0;
+.remote-heading {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  justify-content: space-between;
+}
+.remote-heading h2 { font-size: 1.25rem; line-height: 1.25; margin: 0; }
+.remote-heading > span {
   font-size: .875rem;
-  line-height: 1.6;
+  line-height: 1.4;
+  letter-spacing: .055em;
+  font-weight: 700;
+  color: var(--accent);
+}
+.remote-download > p {
+  color: var(--muted);
+  line-height: 1.5;
+  font-size: 1rem;
+  margin: 10px 0;
+}
+.remote-details { margin-bottom: 12px; gap: 6px 14px; }
+.download-button.secondary {
+  background: #142e42;
+  color: #e1faf6;
+  border-color: #5d8792;
+  min-height: 60px;
+  font-size: 1.125rem;
+}
+.download-button.secondary:hover { background: #21495b; border-color: var(--accent); }
+.install-note { border-top: 1px solid #3c5067; padding-top: 16px; }
+.install-note h2 { font-size: 1.125rem; line-height: 1.3; margin: 0 0 10px; font-weight: 600; }
+.install-steps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 18px;
+  padding: 0;
+  margin: 0 0 10px;
+  list-style: none;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+.install-steps li { display: flex; align-items: baseline; gap: 7px; }
+.install-steps span { color: var(--accent); font-weight: 700; }
+.install-note p { font-size: 1rem; line-height: 1.5; color: var(--muted); margin: 0; }
+footer {
+  color: #b1c4dc;
+  font-size: 1rem;
+  line-height: 1.5;
   text-align: center;
-  padding: 20px 24px 30px;
+  padding: 12px 24px 20px;
 }
 footer span { margin: 0 8px; }
 @media (min-width: 1500px) {
-  .download-page { max-width: 1380px; gap: 100px; padding: 70px; }
+  .download-page { max-width: 1420px; gap: 72px; padding: 48px; }
   .brand-art img { max-width: 500px; }
-  h1 { font-size: 4.5rem; }
+  h1 { font-size: 3.5rem; }
   .intro { font-size: 1.375rem; }
-  .release-details, .included, footer { font-size: 1.125rem; }
-  .download-button { min-height: 90px; font-size: 1.625rem; }
-  .download-button.secondary { min-height: 74px; font-size: 1.25rem; }
-  .remote-heading h2 { font-size: 1.375rem; }
-  .remote-download > p, .remote-details { font-size: 1rem; }
-  .install-note h2, .install-note p { font-size: 1.25rem; }
+  .release-details, .remote-download > p, .install-steps, .install-note p, footer { font-size: 1.125rem; }
+  .download-button { min-height: 86px; font-size: 1.625rem; }
+  .download-button.secondary { min-height: 74px; font-size: 1.375rem; }
+  .remote-heading h2 { font-size: 1.5rem; }
+  .remote-heading > span { font-size: 1rem; }
+  .remote-download { padding: 24px; margin: 24px 0; }
+  .install-note h2 { font-size: 1.25rem; }
 }
-@media (max-width: 700px) {
+/* A wide, single column keeps portrait tablets out of cramped desktop columns. */
+@media (max-width: 900px) {
   body::before { background-position: 27% top; opacity: .5; }
   body::after {
     background: linear-gradient(180deg, #09132399 0%, #091323dc 32%, #091323f5 65%, #091323 100%);
   }
   .download-page {
-    max-width: 460px;
-    grid-template-columns: 1fr;
-    padding: 30px 26px 22px;
-    gap: 25px;
-    margin: auto;
+    max-width: 600px;
+    grid-template-columns: minmax(0, 1fr);
+    padding: 24px 28px 18px;
+    gap: 18px;
   }
-  .brand-art img { max-width: 230px; }
+  .brand-art img { max-width: 160px; }
   .download-content { text-align: center; }
-  .eyebrow { font-size: .875rem; margin-bottom: 12px; }
-  h1 { font-size: 2.5rem; }
-  h1 br { display: none; }
-  h1 span { display: block; }
-  .intro { font-size: 1rem; margin: 15px auto 20px; max-width: 21rem; }
-  .release-details { justify-content: center; gap: 6px 16px; margin-bottom: 20px; }
-  .download-button { min-height: 66px; }
-  .included { margin-bottom: 21px; }
-  .install-note { text-align: left; padding-top: 18px; }
-  .remote-download { text-align: left; padding: 18px; }
+  h1 { font-size: 2.75rem; }
+  .intro { font-size: 1.125rem; margin: 12px 0 18px; }
+  .release-details { justify-content: center; }
+  .remote-download { text-align: left; }
   .remote-details { justify-content: flex-start; }
-  footer { padding-top: 15px; }
+  .install-note { text-align: left; }
 }
-@media (max-height: 540px) and (min-width: 701px) {
-  .download-page { padding: 25px 40px 20px; gap: 40px; }
-  .brand-art img { max-width: 300px; }
-  h1 { font-size: 2.5rem; }
-  .eyebrow { margin-bottom: 10px; }
-  .intro { margin: 12px 0; font-size: 1rem; }
-  .release-details { margin-bottom: 15px; }
-  .download-button { min-height: 60px; }
-  .included { margin: 12px 0; }
-  .install-note { padding-top: 12px; }
-  footer { padding: 10px 24px 15px; }
-}
-@media (max-width: 700px) and (max-height: 700px) {
-  .download-page { padding-top: 20px; gap: 16px; }
-  .brand-art img { max-width: 150px; }
+@media (max-width: 600px) {
+  .download-page { max-width: 460px; padding: 22px 22px 16px; gap: 16px; }
+  h1 { font-size: 2.25rem; }
+  h1 span { display: block; }
   .eyebrow { margin-bottom: 8px; }
-  h1 { font-size: 2.125rem; }
-  .intro { margin: 12px auto 16px; }
+  .intro { font-size: 1rem; margin: 10px 0 16px; }
+  .release-details { font-size: .875rem; gap: 6px 14px; margin-bottom: 14px; }
+  .download-button { min-height: 66px; }
+  .remote-download { padding: 16px; }
+  .remote-heading h2 { font-size: 1.125rem; }
+  .remote-heading > span { font-size: .75rem; }
+  .remote-details { margin-bottom: 12px; }
+  .download-button.secondary { font-size: 1rem; }
+  .install-steps { display: grid; gap: 8px; }
+  footer { font-size: .875rem; padding-top: 10px; }
+}
+@media (min-width: 1100px) {
+  .release-details, .remote-download > p, .install-steps, .install-note p, footer { font-size: 1.125rem; }
+  .remote-heading > span { font-size: 1rem; }
+}
+/* Keep both downloads and the installation steps within typical 720p TV height. */
+@media (min-width: 1100px) and (max-height: 800px) {
+  .download-page { padding-top: 22px; padding-bottom: 14px; }
+  .eyebrow { margin-bottom: 8px; }
+  .intro { margin: 10px 0 14px; }
+  .release-details { margin-bottom: 12px; }
+  .download-button { min-height: 64px; }
+  .remote-download { padding: 16px; margin: 16px 0; }
+  .remote-download > p { margin: 8px 0; }
+  .remote-details { margin-bottom: 10px; }
+  .install-note { padding-top: 12px; }
+  .install-note h2, .install-steps { margin-bottom: 8px; }
+  footer { padding-top: 8px; padding-bottom: 16px; }
+}
+/* Short landscape browsers keep branding compact and downloads wide. */
+@media (min-width: 601px) and (max-height: 540px) {
+  .download-page {
+    max-width: 1100px;
+    grid-template-columns: minmax(120px, .55fr) minmax(0, 1.45fr);
+    padding: 20px 28px 16px;
+    gap: 28px;
+    align-items: start;
+  }
+  .brand-art { padding-top: 12px; }
+  .brand-art img { max-width: 160px; }
+  .download-content { text-align: left; }
+  h1 { font-size: 2.25rem; }
+  .eyebrow { margin-bottom: 8px; }
+  .intro { margin: 8px 0 12px; font-size: 1rem; }
+  .release-details { justify-content: flex-start; margin-bottom: 12px; }
+  .download-button { min-height: 60px; }
+  .remote-download { margin: 16px 0; padding: 16px; }
+  .install-note { padding-top: 12px; }
+  footer { padding: 10px 24px 16px; }
 }
 @media (forced-colors: active) {
   body::before, body::after { display: none; }

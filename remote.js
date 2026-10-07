@@ -6,10 +6,12 @@
   document.addEventListener('keydown', function (event) {
     var selected = buttons.indexOf(document.activeElement);
     if (/^Arrow(Up|Down|Left|Right)$/.test(event.key) && (selected >= 0 || document.activeElement === document.body)) {
-      event.preventDefault();
       var direction = event.key === 'ArrowUp' || event.key === 'ArrowLeft' ? -1 : 1;
-      var next = selected < 0 ? 0 : Math.max(0, Math.min(buttons.length - 1, selected + direction));
-      if (buttons[next]) buttons[next].focus();
+      var next = selected < 0 ? (direction > 0 ? 0 : -1) : selected + direction;
+      if (buttons[next]) {
+        event.preventDefault();
+        buttons[next].focus();
+      }
     }
     if (selected >= 0 && (event.key === ' ' || event.key === 'Select' || event.key === 'Accept')) {
       event.preventDefault();
