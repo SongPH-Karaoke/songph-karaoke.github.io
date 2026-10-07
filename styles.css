@@ -14,7 +14,27 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background: radial-gradient(ellipse at 15% 25%, #102941 0, transparent 60%), #091323;
+  isolation: isolate;
+  background: #091323;
+}
+/* Decorative photo stays behind the readable download content. */
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+}
+body::before {
+  z-index: -2;
+  background: url("karaoke-friends-bg.jpg") 35% center / cover no-repeat;
+  opacity: .54;
+}
+body::after {
+  z-index: -1;
+  background:
+    linear-gradient(180deg, #09132333 0%, #09132333 50%, #091323f5 100%),
+    linear-gradient(90deg, #09132366 0%, #091323b8 48%, #091323f0 100%);
 }
 .download-page {
   width: 100%;
@@ -98,7 +118,7 @@ h1 span { color: #c2d0e1; }
   margin: 15px 0 29px;
 }
 .install-note { border-top: 1px solid #26384c; padding-top: 22px; }
-.remote-download { border: 1px solid #263e53; background: #10223699; border-radius: 16px; padding: 22px; margin: 24px 0 25px; }
+.remote-download { border: 1px solid #314c61; background: #102236e6; border-radius: 16px; padding: 22px; margin: 24px 0 25px; }
 .remote-heading { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; justify-content: space-between; }
 .remote-heading h2 { font-size: 1.125rem; margin: 0; }
 .remote-heading > span { font-size: .625rem; letter-spacing: .1em; font-weight: 700; color: var(--accent); }
@@ -129,6 +149,10 @@ footer span { margin: 0 8px; }
   .install-note h2, .install-note p { font-size: 1.25rem; }
 }
 @media (max-width: 700px) {
+  body::before { background-position: 27% top; opacity: .5; }
+  body::after {
+    background: linear-gradient(180deg, #09132399 0%, #091323dc 32%, #091323f5 65%, #091323 100%);
+  }
   .download-page {
     max-width: 460px;
     grid-template-columns: 1fr;
@@ -171,6 +195,7 @@ footer span { margin: 0 8px; }
   .intro { margin: 12px auto 16px; }
 }
 @media (forced-colors: active) {
+  body::before, body::after { display: none; }
   .download-button { border: 2px solid ButtonText; }
   .download-button:focus { outline-color: Highlight; }
 }
