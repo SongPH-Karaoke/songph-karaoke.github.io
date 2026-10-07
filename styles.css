@@ -240,8 +240,8 @@ footer span { margin: 0 8px; }
   .install-note h2, .install-steps { margin-bottom: 8px; }
   footer { padding-top: 8px; padding-bottom: 16px; }
 }
-/* Short landscape browsers keep branding compact and downloads wide. */
-@media (min-width: 601px) and (max-height: 540px) {
+/* Only phone-width landscape browsers use compact branding. */
+@media (min-width: 601px) and (max-width: 900px) and (max-height: 540px) {
   .download-page {
     max-width: 1100px;
     grid-template-columns: minmax(120px, .55fr) minmax(0, 1.45fr);
